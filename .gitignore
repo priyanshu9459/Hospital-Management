@@ -31,6 +31,6 @@ build/
 src/main/resources/application-local.properties
 application-local.properties
 application-local.yml
-application.properties
+#application.properties
 ### VS Code ###
 .vscode/

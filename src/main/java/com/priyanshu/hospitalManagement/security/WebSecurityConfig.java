@@ -44,8 +44,14 @@ public class WebSecurityConfig {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/public/**", "/auth/**").permitAll()
-//                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
 //                        .requestMatchers("/doctors/**").hasAnyRole("DOCTOR", "ADMIN")
+                                .requestMatchers(
+                                        "/actuator/**",
+                                        "/swagger-ui/**",
+                                        "/swagger-ui.html",
+                                        "/v3/api-docs/**"
+                                ).permitAll()
                         .anyRequest().authenticated()
                 )
 //                .formLogin(Customizer.withDefaults());
