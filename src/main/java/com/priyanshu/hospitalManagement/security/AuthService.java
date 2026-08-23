@@ -1,4 +1,4 @@
-package com.priyanshu.hospitalManagement.service;
+package com.priyanshu.hospitalManagement.security;
 
 import com.priyanshu.hospitalManagement.dto.LoginRequestDto;
 import com.priyanshu.hospitalManagement.dto.LoginResponseDto;
@@ -10,7 +10,6 @@ import com.priyanshu.hospitalManagement.entity.type.AuthProviderType;
 import com.priyanshu.hospitalManagement.entity.type.RoleType;
 import com.priyanshu.hospitalManagement.repository.PatientRepository;
 import com.priyanshu.hospitalManagement.repository.UserRepository;
-import com.priyanshu.hospitalManagement.security.AuthUtil;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +22,6 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
-
 
 @Service
 @RequiredArgsConstructor

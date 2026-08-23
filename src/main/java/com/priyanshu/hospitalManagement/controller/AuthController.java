@@ -5,7 +5,7 @@ import com.priyanshu.hospitalManagement.dto.LoginResponseDto;
 import com.priyanshu.hospitalManagement.dto.LoginRequestDto;
 import com.priyanshu.hospitalManagement.dto.SignUpRequestDto;
 import com.priyanshu.hospitalManagement.dto.SignupResponseDto;
-import com.priyanshu.hospitalManagement.service.AuthService;
+import com.priyanshu.hospitalManagement.security.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

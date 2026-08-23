@@ -15,6 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationEntryPointFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import java.io.IOException;
 
@@ -26,11 +27,13 @@ public class WebSecurityConfig {
     private final PasswordEncoder passwordEncoder;
     private final JwtAuthFilter jwtAuthFilter;
     private final OAuth2SuccessHandler oAuth2SuccessHandler;
+    private final HandlerExceptionResolver handlerExceptionResolver;
 
-    public WebSecurityConfig(PasswordEncoder passwordEncoder, JwtAuthFilter jwtAuthFilter, OAuth2SuccessHandler oAuth2SuccessHandler) {
+    public WebSecurityConfig(PasswordEncoder passwordEncoder, JwtAuthFilter jwtAuthFilter, OAuth2SuccessHandler oAuth2SuccessHandler, HandlerExceptionResolver handlerExceptionResolver) {
         this.passwordEncoder = passwordEncoder;
         this.jwtAuthFilter = jwtAuthFilter;
         this.oAuth2SuccessHandler = oAuth2SuccessHandler;
+        this.handlerExceptionResolver = handlerExceptionResolver;
     }
     @Bean
     public SecurityFilterChain securtiyFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -52,9 +55,14 @@ public class WebSecurityConfig {
                 .failureHandler(
                 (AuthenticationFailureHandler) (request, response, exception) -> {
                   log.error("Oauth2 Error: {}", exception.getMessage());
+                  handlerExceptionResolver.resolveException(request, response, null, exception);
                 })
                 .successHandler(oAuth2SuccessHandler)
-        );
+        )
+                .exceptionHandling(exceptionHandlingConfigurer ->
+                        exceptionHandlingConfigurer.accessDeniedHandler((request, response, accessDeniedException) -> {
+                            handlerExceptionResolver.resolveException(request, response, null, accessDeniedException);
+                        }));
 //                .formLogin();
         return httpSecurity.build();
 
