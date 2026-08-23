@@ -1,6 +1,7 @@
 package com.priyanshu.hospitalManagement.service;
 
 import com.priyanshu.hospitalManagement.dto.DoctorResponseDto;
+import com.priyanshu.hospitalManagement.dto.OnboardDoctorRequestDto;
 import com.priyanshu.hospitalManagement.repository.DoctorRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,4 +27,6 @@ public class DoctorService {
     }
 
 
+    public DoctorResponseDto onBoardNewDoctor(OnboardDoctorRequestDto onboardDoctorRequestDto) {
+    }
 }
