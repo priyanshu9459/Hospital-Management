@@ -34,3 +34,5 @@ application-local.yml
 #application.properties
 ### VS Code ###
 .vscode/
+.env
+target/

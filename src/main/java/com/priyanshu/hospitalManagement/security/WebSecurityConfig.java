@@ -47,7 +47,7 @@ public class WebSecurityConfig {
                         .requestMatchers("/admin/**").hasRole("ADMIN")
 //                        .requestMatchers("/doctors/**").hasAnyRole("DOCTOR", "ADMIN")
                                 .requestMatchers(
-                                        "/actuator/**",
+                                        "/actuator/health",
                                         "/swagger-ui/**",
                                         "/swagger-ui.html",
                                         "/v3/api-docs/**"

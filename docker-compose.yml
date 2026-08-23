@@ -1,0 +1,36 @@
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: hospital-postgres
+    environment:
+      POSTGRES_DB: hospitaldb
+      POSTGRES_USER: priyanshu
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  hospital-app:
+    build: .
+    container_name: hospital-app
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    environment:
+      DB_URL: ${DB_URL}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+
+      JWT_SECRET: ${JWT_SECRET}
+
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+
+      SPRING_SECURITY_USER: ${SPRING_SECURITY_USER}
+      SPRING_SECURITY_PASSWORD: ${SPRING_SECURITY_PASSWORD}
+
+volumes:
+  postgres_data:
